@@ -36,12 +36,6 @@ public class Colosseum {
     static Pokemon secondPokemon;
 
     /**
-     * Input scanner. Use this to take in user's input for buildPokemon(). <br>
-     * Useful functions: next(), nextInt() .
-     */
-    static Scanner myScan;
-
-    /**
      * How we will build our Pokemon to battle.
      * <p>
      * Obtain user input to set Pokemon's member variables
@@ -77,33 +71,34 @@ public class Colosseum {
      *         Implement this function.
      */
     public static Pokemon buildPokemon() {
+        Scanner myScan = new Scanner(System.in);
         Pokemon tempPokemon = new Pokemon();
 
-        System.out.printf("Please name your Pokemon: ");
+        System.out.printf("Please name your Pokemon:\n");
         tempPokemon.name = myScan.nextLine();
 
-        System.out.printf("How many hit points will it have? (1-%d): ", MAX_HIT_POINTS);
+        System.out.printf("How many hit points will it have? (1-%d):\n", MAX_HIT_POINTS);
         int hp = myScan.nextInt();
         while (hp < 1 || hp > MAX_HIT_POINTS) {
-            System.out.printf("Sorry. Hit points must be between 1 and %d: ", MAX_HIT_POINTS);
+            System.out.printf("Sorry. Hit points must be between 1 and %d:\n", MAX_HIT_POINTS);
             hp = myScan.nextInt();
         }
         tempPokemon.hitPoints = hp;
 
-        System.out.println("Split fifty points between attack level and defense level");
-        System.out.printf("Enter attack level (1-%d): ", MAX_STATS - 1);
+        System.out.printf("Split fifty points between attack level and defense level");
+        System.out.printf("Enter attack level (1-%d):\n", MAX_STATS - 1);
         int atk = myScan.nextInt();
         while (atk < 1 || atk > MAX_STATS - 1) {
-            System.out.printf("Sorry. The attack level must be between 1 and %d: ", MAX_STATS - 1);
+            System.out.printf("Sorry. The attack level must be between 1 and %d:\n", MAX_STATS - 1);
             atk = myScan.nextInt();
         }
         tempPokemon.attackLevel = atk;
 
         int maxDef = MAX_STATS - atk;
-        System.out.printf("Enter your defense level (1-%d): ", maxDef);
+        System.out.printf("Enter your defense level (1-%d):\n", maxDef);
         int def = myScan.nextInt();
         while (def < 1 || def > maxDef) {
-            System.out.printf("Sorry. The defense level must be between 1 and %d: ", maxDef);
+            System.out.printf("Sorry. The defense level must be between 1 and %d:\n", maxDef);
             def = myScan.nextInt();
         }
         tempPokemon.defenseLevel = def;
@@ -135,7 +130,7 @@ public class Colosseum {
             if (secondPokemon.hitPoints > firstPokemon.hitPoints) {
                 name = secondPokemon.name;
             }
-            System.out.printf("%s is currently ahead!", name);
+            System.out.printf("%s is currently ahead!\n", name);
         }
     }
 
@@ -152,7 +147,7 @@ public class Colosseum {
             name = secondPokemon.name;
         }
 
-        System.out.printf("%s is the winner!", name);
+        System.out.printf("%s is the winner!\n", name);
     }
 
     /**
@@ -166,7 +161,7 @@ public class Colosseum {
         firstPokemon = buildPokemon();
         firstPokemon.name = "Chuchu";
 
-        //System.out.println("");
+        System.out.println("");
 
         System.out.println("Player 2, build your Pokemon!");
         System.out.println("==================");
@@ -210,7 +205,6 @@ public class Colosseum {
      * @param unused unused input arguments.
      */
     public static void main(final String[] unused) {
-        myScan = new Scanner(System.in);
         initializePokemon();
         determineOrder();
         System.out.println("");
@@ -240,7 +234,5 @@ public class Colosseum {
         } else {
             determineWinner();
         }
-
-        myScan.close();
     }
 }
